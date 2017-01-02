@@ -1,10 +1,30 @@
 <html>
 <head>
     <title> Tip Calculator </title>
-<body>
+    <style type="text/css">
+    	body {background-color: fdffc3;}
+    	#outer {
+    		width: 40%;
+    		height: 50%;
+    		margin: auto;
+    		border-color: black;
+    		border-style: solid;
+    	}
+    	
+    	h1, #inner{
+    		margin: 0 auto;
+    		text-align: center;
+    		vertical-align: middle;
+    	}
+    	
 
+    </style>
+<body>
+<div id="outer" >
+	<h1>Tip Calculator</h1>
+	<div id="inner">
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
-    Bill Subtitle:$  <input type="Text" Name="Num1"><br>
+    Bill Subtitle:$  <input type="Text" Name="Num1" value="" placeholder="0"><br>
     Tip Percentage: 
     <?php
     $array = array(0.1,0.15,0.2);
@@ -21,7 +41,10 @@
 
 
 <?php
-	if (count($_POST) > 0 && isset($_POST["Num1"]) && isset($_POST["tip_percentage"])){
+
+
+
+	if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"])){
 
 		
 		$sum = $_POST["Num1"] * $_POST["tip_percentage"] + $_POST["Num1"];
@@ -29,10 +52,17 @@
 		echo "Tip is ".$_POST["Num1"]*$_POST["tip_percentage"]." and
 		total is $sum";
 	}
-	if ($_POST["Num1"] <= 0 ){
-		echo "Bill Subtitle must be greater than zero";
+	if (isset($_POST["Num1"]) && $_POST["Num1"] < 0){
+		echo "Subtitle should be greater than 0";
 	}
+	if (isset($_POST["Num1"]) && !is_numeric($_POST["Num1"])){
+		echo "Subtitle should be a numeric number.";
+	}
+	
+	
 ?>
+</div>
+</div>
 
 </body>
 </html>
