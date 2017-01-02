@@ -30,12 +30,17 @@
 		    $array = array(0.1,0.15,0.2);
 		    foreach($array as $value){   
 		    ?>
-		    <input type="radio" name="tip_percentage" value="<?php echo $value; ?>" ><?php echo $value; ?><br>
+		    <!-- Set default radio button value and retain value when result is shown -->
+		    <input type="radio" name="tip_percentage" value="<?php echo $value;?>" <?php
+		    echo (isset($_POST['tip_percentage']) && $_POST['tip_percentage'] == $value) ? "checked":"";
+		    ?>><?php echo $value; ?>
+
+
 		    <?php
 		    }
 		    ?>
 		 	<!-- Submit Form -->
-		    <input type="Submit" value="Calculate">
+		    <input type="Submit" name="Submit" value="Calculate">
 		    </form>
 
 		    <!-- Validate User Input, display corresponding error messages  -->
@@ -53,6 +58,7 @@
 			if (isset($_POST["Num1"]) && !is_numeric($_POST["Num1"])){
 				echo "Subtitle should be a numeric number.";
 			}
+			
 			?>
 
 		</div>
