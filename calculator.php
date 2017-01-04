@@ -72,13 +72,14 @@
 				echo "Tip for each person is ".$_POST["Num1"]*$_POST["tip_percentage"]/$_POST["Num2"]." and total for each person is ".$sum/$_POST["Num2"];
 
 				}
-				else{
+				if($_POST['tip_percentage'] == "Other" && $_POST["customizedTip"] > 0){
 					$sum = $_POST["Num1"] * $_POST["customizedTip"] + $_POST["Num1"];
 				echo "Tip is ".$_POST["Num1"]*$_POST["customizedTip"]." and
 				total is $sum"."<br>";
 				echo "Tip for each person is ".$_POST["Num1"]*$_POST["customizedTip"]/$_POST["Num2"]." and total for each person is ".$sum/$_POST["Num2"];
 
 				}
+		
 
 				
 			}
