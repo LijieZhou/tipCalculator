@@ -35,10 +35,17 @@
 		    echo (isset($_POST['tip_percentage']) && $_POST['tip_percentage'] == $value) ? "checked":"";
 		    ?>><?php echo $value; ?>
 
-
 		    <?php
 		    }
 		    ?>
+
+		    <!-- Here is the customized tip -->
+		    <input type="radio" name="tip_percentage" value="<?php echo $_POST['customizedTip'];?>" <?php
+		    echo (isset($_POST['tip_percentage']) && $_POST['tip_percentage'] == $_POST['customizedTip']) ? "checked":"";
+		    ?>><input type="Text" Name="customizedTip" placeholder="0.3" value="<?php echo isset($_POST['customizedTip']) ? $_POST['customizedTip'] : '' ?>">
+
+
+
 
 		    <br>
 		    Split: <input type="Text" name="Num2" placeholder="2" value="<?php echo isset($_POST['Num2']) ? $_POST['Num2'] : '' ?>">  Person(s)<br>
@@ -52,7 +59,7 @@
 		    <!-- Validate User Input, display corresponding error messages  -->
 			<?php
 
-			if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"]) && ($_POST["Num2"] >0)){
+			if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"]) && ($_POST["Num2"] >0) && ($_POST["customizedTip"] > 0)){
 
 				$sum = $_POST["Num1"] * $_POST["tip_percentage"] + $_POST["Num1"];
 				echo "Tip is ".$_POST["Num1"]*$_POST["tip_percentage"]." and
@@ -64,6 +71,12 @@
 			}
 			if (isset($_POST["Num1"]) && !is_numeric($_POST["Num1"])){
 				echo "Subtitle should be a numeric number.";
+			}
+			if (isset($_POST["customizedTip"]) && ($_POST["customizedTip"]<0)){
+				echo "Your customized tip cannot be negative.";
+			}
+			if (isset($_POST["Num2"]) && ($_POST["Num2"])<=0){
+				echo "Person(s) has to be greater than 0.";
 			}
 			
 			?>
