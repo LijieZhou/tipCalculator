@@ -40,7 +40,7 @@ The biggest challenge is to use loop to display radio buttons and retain the rad
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [Lijie Zhou] 
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
