@@ -4,7 +4,7 @@ Tip Calculator is a tip calculator PHP page.
 
 Submitted by: Lijie Zhou
 
-Time spent: 6 hours spent in total
+Time spent: 6.5 hours spent in total
 
 ## User Stories
 
@@ -17,24 +17,26 @@ The following **required** functionality is complete:
 * [x] Submitted form values are retained when errors or results are shown.
 
 The following **optional** features are implemented:
-* [ ] Add support for custom tip percentage
-* [ ] Add support for splitting the tip and total
+* [x] Add support for custom tip percentage
+* [x] Add support for splitting the tip and total
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the functionality!
+* [x] Improve UI by adding CSS
+* [x] Enhance error message by specifying type of error
+
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/bLPkPJc.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/BJdTBAM.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
+## Note
 
-The biggest challenge is to use loop to display the radio buttons. 
+The biggest challenge is to use loop to display radio buttons and retain the radio button after submitting form
 
 ## License
 
