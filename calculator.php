@@ -24,7 +24,7 @@
 		    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 		    <!-- Get user input of Bill Subtitle, display default value as zero -->
 		    Bill Subtitle:$  <input type="Text" Name="Num1" placeholder="0" value="<?php echo isset($_POST['Num1']) ? $_POST['Num1'] : '' ?>"><br>
-		    Tip Percentage: 
+		    Tip Percentage: <br>
 		    <!-- Use a PHP loop to output the three radio buttons -->
 		    <?php
 		    $array = array(0.1,0.15,0.2);
@@ -35,14 +35,18 @@
 		    echo (isset($_POST['tip_percentage']) && $_POST['tip_percentage'] == $value) ? "checked":"";
 		    ?>><?php echo $value; ?>
 
+		    
 		    <?php
 		    }
 		    ?>
-
+		    
 		    <!-- Here is the customized tip -->
-		    <input type="radio" name="tip_percentage" value="<?php echo $_POST['customizedTip'];?>" <?php
-		    echo (isset($_POST['tip_percentage']) && $_POST['tip_percentage'] == $_POST['customizedTip']) ? "checked":"";
-		    ?>><input type="Text" Name="customizedTip" placeholder="0.3" value="<?php echo isset($_POST['customizedTip']) ? $_POST['customizedTip'] : '' ?>">
+		    <input type="radio" name="tip_percentage" value="Other" <?php
+		    echo (isset($_POST['tip_percentage']) && $_POST['tip_percentage'] == "Other")  ? "checked":"";
+		    ?>> 
+
+		  	Custom <input type="Text" Name="customizedTip" placeholder="0.3" value="<?php echo isset($_POST['customizedTip']) ? $_POST['customizedTip'] : '' ?>">
+
 
 
 
@@ -59,12 +63,24 @@
 		    <!-- Validate User Input, display corresponding error messages  -->
 			<?php
 
-			if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"]) && ($_POST["Num2"] >0) && ($_POST["customizedTip"] > 0)){
+			if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"]) && ($_POST["Num2"] >0)){
 
-				$sum = $_POST["Num1"] * $_POST["tip_percentage"] + $_POST["Num1"];
-				echo "Tip is ".$_POST["Num1"]*$_POST["tip_percentage"]." and
+				if($_POST['tip_percentage'] != "Other"){
+					$sum = $_POST["Num1"] * $_POST["tip_percentage"] + $_POST["Num1"];
+					echo "Tip is ".$_POST["Num1"]*$_POST["tip_percentage"]." and
 				total is $sum"."<br>";
 				echo "Tip for each person is ".$_POST["Num1"]*$_POST["tip_percentage"]/$_POST["Num2"]." and total for each person is ".$sum/$_POST["Num2"];
+
+				}
+				else{
+					$sum = $_POST["Num1"] * $_POST["customizedTip"] + $_POST["Num1"];
+				echo "Tip is ".$_POST["Num1"]*$_POST["customizedTip"]." and
+				total is $sum"."<br>";
+				echo "Tip for each person is ".$_POST["Num1"]*$_POST["customizedTip"]/$_POST["Num2"]." and total for each person is ".$sum/$_POST["Num2"];
+
+				}
+
+				
 			}
 			if (isset($_POST["Num1"]) && $_POST["Num1"] < 0){
 				echo "Subtitle should be greater than 0";
