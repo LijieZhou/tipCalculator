@@ -39,6 +39,12 @@
 		    <?php
 		    }
 		    ?>
+
+		    <br>
+		    Split: <input type="Text" name="Num2" placeholder="2" value="<?php echo isset($_POST['Num2']) ? $_POST['Num2'] : '' ?>">  Person(s)<br>
+
+
+
 		 	<!-- Submit Form -->
 		    <input type="Submit" name="Submit" value="Calculate">
 		    </form>
@@ -46,11 +52,12 @@
 		    <!-- Validate User Input, display corresponding error messages  -->
 			<?php
 
-			if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"])){
+			if (count($_POST) > 0 && is_numeric($_POST["Num1"]) && ($_POST["Num1"] >0) && isset($_POST["tip_percentage"]) && ($_POST["Num2"] >0)){
 
 				$sum = $_POST["Num1"] * $_POST["tip_percentage"] + $_POST["Num1"];
 				echo "Tip is ".$_POST["Num1"]*$_POST["tip_percentage"]." and
-				total is $sum";
+				total is $sum"."<br>";
+				echo "Tip for each person is ".$_POST["Num1"]*$_POST["tip_percentage"]/$_POST["Num2"]." and total for each person is ".$sum/$_POST["Num2"];
 			}
 			if (isset($_POST["Num1"]) && $_POST["Num1"] < 0){
 				echo "Subtitle should be greater than 0";
